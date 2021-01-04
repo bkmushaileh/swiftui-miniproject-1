@@ -10,22 +10,24 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView{
-            
-            List{
+            ZStack{
                 Text("مرحبا بك .. يمكنك اختيار الدراجة المناسبة لك من القائمة وأكمل بياناتك للحجز")
                     .font(.system(size: 15))
-                BicycleRow(bicycleImage: "1")
-                BicycleRow(bicycleImage: "2")
-                BicycleRow(bicycleImage: "3")
-                BicycleRow(bicycleImage: "4")
-                BicycleRow(bicycleImage: "5")
+                
+            List(bicycles){ bicycle in
+                NavigationLink(
+                    destination: SecondView(bicycle:bicycle),
+                    label: {
+                        BicycleRow(bicycle:bicycle)
+
+                        
+                    })
                
 
                 
                 
-            }.navigationTitle("تأجير الدراجات")
-            
-            
+            }.navigationBarTitle("تأجير الدراجات")
+            }
         }
     }
 }
@@ -38,25 +40,18 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct BicycleRow: View {
-    var bicycleImage : String
+    let bicycle: Bicycle
     var body: some View {
         HStack{
-            Text(bicycleImage)
+            Text(bicycle.name)
                 .padding()
-                .background(Color("AccentColor"))
+                .background(Color.blue)
                 .clipShape(Circle())
                 .foregroundColor(.white)
-            Image(bicycleImage)
+            Image(bicycle.name)
                 .resizable()
                 .frame(width: 70, height: 70)
                 .padding()
-            NavigationLink(
-                destination: SecondView(),
-                label: {
-                    Spacer()
-                    Text("")
-                    
-                })
             
         }
     }
