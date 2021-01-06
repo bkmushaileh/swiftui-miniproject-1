@@ -10,24 +10,24 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         NavigationView{
-            ZStack{
-                Text("مرحبا بك .. يمكنك اختيار الدراجة المناسبة لك من القائمة وأكمل بياناتك للحجز")
-                    .font(.system(size: 15))
-                
-            List(bicycles){ bicycle in
-                NavigationLink(
-                    destination: SecondView(bicycle:bicycle),
-                    label: {
-                        BicycleRow(bicycle:bicycle)
-
-                        
-                    })
-               
-
-                
-                
+            
+            List{
+                Text("مرحبا بك .... يمكنك اختيار الدراجة المناسبة لك من القائمة و أكمل بياناتك  للحجز")
+                ForEach(bicycles){ bicycle in
+                    NavigationLink(
+                        destination: SecondView(bicycle:bicycle),
+                        label: {
+                            BicycleRow(bicycle:bicycle)
+                            
+                            
+                        })
+                    
+                    
+                }
             }.navigationBarTitle("تأجير الدراجات")
-            }
+            
+            
+            
         }
     }
 }
@@ -42,6 +42,7 @@ struct ContentView_Previews: PreviewProvider {
 struct BicycleRow: View {
     let bicycle: Bicycle
     var body: some View {
+            
         HStack{
             Text(bicycle.name)
                 .padding()
@@ -51,8 +52,10 @@ struct BicycleRow: View {
             Image(bicycle.name)
                 .resizable()
                 .frame(width: 70, height: 70)
-                .padding()
             
-        }
+        }.padding()
+       
+    
+
     }
 }

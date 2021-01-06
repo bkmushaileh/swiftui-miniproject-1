@@ -13,7 +13,9 @@ struct ThirdView: View {
     let hours : Int
     let price : Int
     @State private var didClick:Bool = false
-  
+    @State private var color : Color = .blue
+    @State private var payment : String = "ادفع الان"
+
     
     var body: some View {
         VStack{
@@ -43,24 +45,21 @@ struct ThirdView: View {
             Spacer()
             Button(action: {
                 self.didClick = true
+                payment = "تم الدفع"
+                color = .green
+                
             })
             {
-                Text("ادفع الان").onTapGesture{
+                Text(payment)
                     
                 }
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 300, height: 50)
-                    .background(Color.blue)
+                    .background(color)
                     .cornerRadius(15.0)
-            }
-            .font(.headline)
-            .foregroundColor(.white)
-            .padding()
-            .frame(width: 300, height: 50)
-            .background(Color.green)
-            .cornerRadius(15.0)
+           
         }
     }
 }

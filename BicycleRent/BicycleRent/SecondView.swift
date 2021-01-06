@@ -14,7 +14,6 @@ struct SecondView: View {
     @State var count = 0
     let bicycle:Bicycle
     var body: some View {
-        NavigationView{
         VStack {
             Image(bicycle.name)
                 .resizable()
@@ -65,7 +64,7 @@ struct SecondView: View {
             
         
         }.padding()
-        }
+        
     }
     
     func price ( hours : Int , number : Int) -> String
